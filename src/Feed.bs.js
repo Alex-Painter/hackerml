@@ -8,11 +8,33 @@ var React = require("react");
 function Feed(Props) {
   var name = Props.name;
   var match = React.useState((function () {
-          return "";
+          return /* [] */0;
         }));
   var setItems = match[1];
+  var fetchItems = function (param) {
+    var items = /* array */[
+      "1",
+      "2",
+      "3"
+    ];
+    var articles = items.map((function (item) {
+            Axios.get(" https://hacker-news.firebaseio.com/v0/item/" + item).then((function (response) {
+                      return Promise.resolve(response.data);
+                    })).catch((function (error) {
+                    return Promise.resolve((console.log(error), /* () */0));
+                  }));
+            return (function (param) {
+                      console.log(/* () */0);
+                      return /* () */0;
+                    });
+          }));
+    console.log(articles);
+    return /* () */0;
+  };
+  fetchItems(/* () */0);
   React.useEffect((function () {
           Axios.get("https://hacker-news.firebaseio.com/v0/topstories.json").then((function (response) {
+                    console.log(response.data);
                     return Promise.resolve(Curry._1(setItems, response.data));
                   })).catch((function (error) {
                   return Promise.resolve((console.log(error), /* () */0));
@@ -23,7 +45,7 @@ function Feed(Props) {
                   });
         }), ([]));
   var message = "hello " + name;
-  return React.createElement("div", undefined, match[0], message);
+  return React.createElement("div", undefined, message);
 }
 
 var make = Feed;
